@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {FlatList, View, Image} from 'react-native';
-import {Spinner, Text} from 'native-base';
+import {Spinner, H2} from 'native-base';
 
 const ContentRow = props => {
   let [content, setContent] = useState([]);
@@ -28,8 +28,8 @@ const ContentRow = props => {
   };
 
   return (
-    <View style={{marginVertical: 20}}>
-      <Text style={{color: 'white', padding: 20}}>{props.rowTitle}</Text>
+    <View style={{Padding: 20, margin: 10}}>
+      <H2 style={{color: 'white', padding: 10, fontFamily: 'sans-serif-medium'}}>{props.rowTitle}</H2>
       {loading ? (
         <Spinner color="red" />
       ) : (
