@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {Spinner} from 'native-base';
 import Swiper from 'react-native-swiper';
-import {View, Image, Dimensions} from 'react-native';
+import {View, Image, Dimensions, TouchableOpacity} from 'react-native';
 
-const ContentSwipe = () => {
+const ContentSwipe = props => {
   let [content, setContent] = useState([]);
   let [loading, setLoading] = useState(true);
 
@@ -37,12 +37,19 @@ const ContentSwipe = () => {
       autoplayTimeout={3.5}>
       {content.map(item => (
         <View key={item.id} style={{flex: 1, justifyContent: 'center'}}>
-          <Image
-            style={{width: width, height: 300}}
-            source={{
-              uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}`,
-            }}
-          />
+          <TouchableOpacity
+            activeOpacity={0.5}
+            onPress={() => {
+              props.setModalContent(item);
+              props.setModalVisible(true);
+            }}>
+            <Image
+              style={{width: width, height: 300}}
+              source={{
+                uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}`,
+              }}
+            />
+          </TouchableOpacity>
         </View>
       ))}
     </Swiper>

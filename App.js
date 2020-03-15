@@ -5,10 +5,14 @@ import AppHeader from './Components/AppHeader';
 import ContentRow from './Components/ContentRow';
 import ContentSwipe from './Components/ContentSwipe';
 import AppFooter from './Components/AppFooter';
+import DetailsModal from './Components/DetailsModal';
+import './styles.js';
 
 const App = () => {
   let [loading, setLoading] = useState(true);
   let [genres, setGenres] = useState([]);
+  let [modalVisible, setModalVisible] = useState(false);
+  let [modalContent, setModalContent] = useState({});
 
   useEffect(() => {
     loadGenres();
@@ -28,6 +32,10 @@ const App = () => {
       });
   };
 
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   return (
     <Container style={{backgroundColor: 'black'}}>
       <StatusBar hidden />
@@ -41,15 +49,27 @@ const App = () => {
         <FlatList
           ListHeaderComponent={
             <>
-              <ContentSwipe />
-              <ContentRow rowTitle="Populares" />
+              <ContentSwipe
+                setModalVisible={() => setModalVisible()}
+                setModalContent={item => setModalContent(item)}
+              />
+              <ContentRow
+                rowTitle="Populares"
+                setModalVisible={() => setModalVisible()}
+                setModalContent={item => setModalContent(item)}
+              />
             </>
           }
           data={genres}
           renderItem={({item}) => (
-            <ContentRow rowTitle={item.name} genre={item.id} />
+            <ContentRow
+              rowTitle={item.name}
+              genre={item.id}
+              setModalVisible={() => setModalVisible()}
+              setModalContent={item => setModalContent(item)}
+            />
           )}
-          keyExtractor={(item, index) => item.id}
+          keyExtractor={(item, index) => 'key' + item.id}
           removeClippedSubviews={true}
           initialNumToRender={2}
           maxToRenderPerBatch={1}
@@ -57,7 +77,11 @@ const App = () => {
           windowSize={7}
         />
       )}
-
+      <DetailsModal
+        modalVisible={modalVisible}
+        modalContent={modalContent}
+        closeModal={() => closeModal()}
+      />
       <AppFooter />
     </Container>
   );

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList, View, Image} from 'react-native';
+import {FlatList, View, Image, TouchableOpacity} from 'react-native';
 import {Spinner, H2} from 'native-base';
 
 const ContentRow = props => {
@@ -29,7 +29,10 @@ const ContentRow = props => {
 
   return (
     <View style={{Padding: 20, margin: 10}}>
-      <H2 style={{color: 'white', padding: 10, fontFamily: 'sans-serif-medium'}}>{props.rowTitle}</H2>
+      <H2
+        style={{color: 'white', padding: 10, fontFamily: 'sans-serif-medium'}}>
+        {props.rowTitle}
+      </H2>
       {loading ? (
         <Spinner color="red" />
       ) : (
@@ -38,20 +41,24 @@ const ContentRow = props => {
           data={content}
           renderItem={({item}) => (
             <View style={{margin: 5, width: 120}}>
-              <Image
-                source={{
-                  uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}`,
-                }}
-                style={{width: 120, height: 180}}
-              />
+              <TouchableOpacity
+                activeOpacity={0.5}
+                onPress={() => {props.setModalContent(item); props.setModalVisible(true);}}>
+                <Image
+                  source={{
+                    uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}`,
+                  }}
+                  style={{width: 120, height: 180}}
+                />
+              </TouchableOpacity>
             </View>
           )}
           keyExtractor={({id}) => id}
-          removeClippedSubviews={true} // Unmount components when outside of window 
-    initialNumToRender={2} // Reduce initial render amount
-    maxToRenderPerBatch={1} // Reduce number in each render batch
-    updateCellsBatchingPeriod={100} // Increase time between renders
-    windowSize={7} // Reduce the window size
+          removeClippedSubviews={true} // Unmount components when outside of window
+          initialNumToRender={2} // Reduce initial render amount
+          maxToRenderPerBatch={1} // Reduce number in each render batch
+          updateCellsBatchingPeriod={100} // Increase time between renders
+          windowSize={7} // Reduce the window size
         />
       )}
     </View>
