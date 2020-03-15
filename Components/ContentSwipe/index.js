@@ -30,7 +30,7 @@ const ContentSwipe = () => {
   return loading ? (
     <Spinner color="red" />
   ) : (
-    <Swiper showsButtons>
+    <Swiper autoplay showsButtons>
       {content.map(item => (
         <View key={item.id} style={{flex: 1, justifyContent: 'center'}}>
           <Image

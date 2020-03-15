@@ -18,21 +18,12 @@ export default class App extends React.Component {
         <AppHeader />
         <ScrollView>
           <ContentSwipe />
-        <ContentRow
-          fetchURL="https://api.themoviedb.org/3/discover/movie?api_key=dc0c0ec1c215e3f8594b2471ce751d65"
-          rowTitle="testestestestes"
-          />
-        <ContentRow
-          fetchURL="https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=dc0c0ec1c215e3f8594b2471ce751d65"
-          rowTitle="filmes top"
-        />
-        <ContentRow
-          fetchURL="https://api.themoviedb.org/3/discover/movie?sort_by=popularity.asc&api_key=dc0c0ec1c215e3f8594b2471ce751d65"
-          rowTitle="filmes bosta"
-          />
+          <ContentRow rowTitle="Populares" />
+          <ContentRow rowTitle="filmes top" genre="28" />
+          <ContentRow rowTitle="filmes bosta" />
         </ScrollView>
 
-       <AppFooter />
+        <AppFooter />
       </Container>
     );
   }

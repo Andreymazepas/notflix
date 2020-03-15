@@ -5,13 +5,18 @@ import {Spinner, Text} from 'native-base';
 const ContentRow = props => {
   let [content, setContent] = useState([]);
   let [loading, setLoading] = useState(true);
+  const API_KEY = 'dc0c0ec1c215e3f8594b2471ce751d65';
 
   useEffect(() => {
     loadResults();
   }, []);
 
   const loadResults = async () => {
-    return fetch(props.fetchURL)
+    let fetchURL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
+    if (props.genre) {
+      fetchURL += `&with_genres=${props.genre}`;
+    }
+    return fetch(fetchURL)
       .then(response => response.json())
       .then(responseJson => {
         setLoading(false);
