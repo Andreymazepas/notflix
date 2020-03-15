@@ -5,7 +5,7 @@ Foram usadas as bibliotecas externas
   - react-native-svg-uri para renderização de arquivos .svg
   - react-native-swiper para o componente de swipe do topo
 
-##TODO
+## TODO
 - Pegar o idioma do aparelho e alterar o texto conforme for a lingua
 - Adicionar o parametro filme/serie nos componentes contentSwiper e contentRow e fazer funcionar com os botões do footer
 - Implementar a página de busca
