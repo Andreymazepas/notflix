@@ -17,8 +17,8 @@ const ContentSwipe = () => {
     )
       .then(response => response.json())
       .then(responseJson => {
-          setContent(responseJson.results);
-          setLoading(false);
+        setContent(responseJson.results);
+        setLoading(false);
         console.log(responseJson);
       })
       .catch(error => {
@@ -30,11 +30,16 @@ const ContentSwipe = () => {
   return loading ? (
     <Spinner color="red" />
   ) : (
-    <Swiper autoplay showsButtons>
+    <Swiper
+      autoplay
+      showsButtons
+      height={300}
+      showsPagination={false}
+      autoplayTimeout={3.5}>
       {content.map(item => (
         <View key={item.id} style={{flex: 1, justifyContent: 'center'}}>
           <Image
-            style={{width: width, flex: 1}}
+            style={{width: width, height: 300}}
             source={{
               uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}`,
             }}
