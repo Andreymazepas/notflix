@@ -3,6 +3,7 @@ import {StyleSheet, StatusBar, ScrollView} from 'react-native';
 import {Container} from 'native-base';
 import AppHeader from './Components/AppHeader';
 import ContentRow from './Components/ContentRow';
+import ContentSwipe from './Components/ContentSwipe';
 import AppFooter from './Components/AppFooter';
 
 export default class App extends React.Component {
@@ -16,6 +17,7 @@ export default class App extends React.Component {
         <StatusBar hidden />
         <AppHeader />
         <ScrollView>
+          <ContentSwipe />
         <ContentRow
           fetchURL="https://api.themoviedb.org/3/discover/movie?api_key=dc0c0ec1c215e3f8594b2471ce751d65"
           rowTitle="testestestestes"
