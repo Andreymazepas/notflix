@@ -19,7 +19,6 @@ const ContentSwipe = () => {
       .then(responseJson => {
         setContent(responseJson.results);
         setLoading(false);
-        console.log(responseJson);
       })
       .catch(error => {
         console.error(error);

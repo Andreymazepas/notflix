@@ -1,12 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  StyleSheet,
-  StatusBar,
-  ScrollView,
-  View,
-  FlatList,
-  Text,
-} from 'react-native';
+import {StyleSheet, StatusBar, View, FlatList} from 'react-native';
 import {Container, Spinner} from 'native-base';
 import AppHeader from './Components/AppHeader';
 import ContentRow from './Components/ContentRow';
@@ -28,7 +21,6 @@ const App = () => {
       .then(response => response.json())
       .then(responseJson => {
         setGenres(responseJson.genres);
-        console.log(responseJson);
         setLoading(false);
       })
       .catch(error => {
@@ -39,7 +31,6 @@ const App = () => {
   return (
     <Container style={{backgroundColor: 'black'}}>
       <StatusBar hidden />
-      <Text style={{color: 'white'}}>{genres[0]?.name}</Text>
       <AppHeader />
 
       {loading ? (
