@@ -1,86 +1,42 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-  FlatList,
-  ActivityIndicator,
-  Image
-} from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {StyleSheet, View, ActivityIndicator} from 'react-native';
+import {Container} from 'native-base';
+import AppHeader from './Components/AppHeader';
+import ContentRow from './Components/ContentRow';
+import AppFooter from './Components/AppFooter';
 
 export default class App extends React.Component {
-
   constructor(props) {
     super(props);
-    this.state = { isLoading: true };
+    this.state = {isLoading: false};
   }
-
-  componentDidMount() {
-    return fetch('https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=dc0c0ec1c215e3f8594b2471ce751d65')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({
-          isLoading: false,
-          dataSource: responseJson.results,
-        }, function () {
-
-        });
-
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-
-
 
   render() {
-
     if (this.state.isLoading) {
       return (
-        <View style={{ flex: 1, padding: 20 }}>
+        <View style={{flex: 1, padding: 20}}>
           <ActivityIndicator />
         </View>
       );
     }
 
     return (
-      <View>
-        <FlatList
-          data={this.state.dataSource}
-          renderItem={({ item }) => <View style={{marginVertical: 20}}>
-            <Image source={{uri:`https://image.tmdb.org/t/p/w500/${item.poster_path}`}} style={{width: 400, height: 400}}/>
-            <Text>
-              {item.title}, {item.release_date}
-            </Text>
-              <View>
-                <Text>
-                  {item.overview}
-                </Text>
-              </View>
-          </View>}
-          keyExtractor={({ id }) => id}
+      <Container style={{backgroundColor: 'black'}}>
+        <AppHeader />
+        <ContentRow
+          fetchURL="https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=dc0c0ec1c215e3f8594b2471ce751d65"
+          rowTitle="testestestestes"
         />
-      </View>
+        <ContentRow
+          fetchURL="https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=dc0c0ec1c215e3f8594b2471ce751d65"
+          rowTitle="testestestestes"
+        />
+        <ContentRow
+          fetchURL="https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=dc0c0ec1c215e3f8594b2471ce751d65"
+          rowTitle="testestestestes"
+        />
+       <AppFooter />
+      </Container>
     );
   }
 }
