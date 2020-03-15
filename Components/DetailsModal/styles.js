@@ -2,9 +2,13 @@ const styles = {
   blackContainer: {
     backgroundColor: 'black',
   },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
+  poster: {
+    width: 130,
+    height: 200,
+    margin: 10,
+  },
+  whiteText: {
+    color: 'white',
   },
 };
 

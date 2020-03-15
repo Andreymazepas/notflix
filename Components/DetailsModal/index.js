@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal, Image, TouchableHighlight,Text, ScrollView} from 'react-native';
+import {Modal, Image, Text, ScrollView} from 'react-native';
 import {
   Card,
   CardItem,
@@ -8,8 +8,9 @@ import {
   Body,
   H3,
   View,
-  Text as NBText
+  Text as NBText,
 } from 'native-base';
+import styles from './styles';
 
 const DetailsModal = props => {
   const {modalContent} = props;
@@ -24,42 +25,42 @@ const DetailsModal = props => {
       }}>
       <Card transparent>
         <ScrollView>
-          <CardItem style={{backgroundColor: 'black'}}>
+          <CardItem style={styles.blackContainer}>
             <Body>
-              <View style={{justifyContent: 'center'}}>
+              <View>
                 <Image
                   source={{
                     uri:
                       'https://image.tmdb.org/t/p/w500/' +
                       modalContent.poster_path,
                   }}
-                  style={{width: 130, height: 200, margin: 10}}
+                  style={styles.poster}
                 />
               </View>
-              <H3 style={{color: 'white'}}>{modalContent.title}</H3>
-              <Text style={{color: 'white'}}>{modalContent.overview}</Text>
+              <H3 style={styles.whiteText}>{modalContent.title}</H3>
+              <Text style={styles.whiteText}>{modalContent.overview}</Text>
             </Body>
           </CardItem>
-          <CardItem style={{backgroundColor: 'black'}}>
+          <CardItem style={styles.blackContainer}>
             <Left>
               <View>
-                <Button transparent textStyle={{color: '#FFF'}}>
+                <Button transparent>
                   <NBText>Popularity:</NBText>
                   <NBText>{modalContent.popularity}</NBText>
                 </Button>
-                <Button transparent textStyle={{color: '#FFF'}}>
+                <Button transparent>
                   <NBText>Release Date:</NBText>
                   <NBText>{modalContent.release_date}</NBText>
                 </Button>
-                <Button transparent textStyle={{color: '#FFF'}}>
+                <Button transparent>
                   <NBText>id:</NBText>
                   <NBText>{modalContent.id}</NBText>
                 </Button>
-                <Button transparent textStyle={{color: '#FFF'}}>
+                <Button transparent>
                   <NBText>Vote Count:</NBText>
                   <NBText>{modalContent.vote_count}</NBText>
                 </Button>
-                <Button transparent textStyle={{color: '#FFF'}}>
+                <Button transparent>
                   <NBText>Vote Average:</NBText>
                   <NBText>{modalContent.vote_average}</NBText>
                 </Button>

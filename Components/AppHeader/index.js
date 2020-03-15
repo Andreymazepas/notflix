@@ -7,19 +7,11 @@ const AppHeader = () => {
   const logo = require('../../img/logo.png');
   return (
     <Header transparent>
-      <Left style={{flex: 1}} />
-      <Body style={{flex: 1}}>
-        <Image
-          source={logo}
-          style={{
-            height: 50,
-            width: 140,
-            resizeMode: 'center',
-            margin: 'auto',
-          }}
-        />
+      <Left style={styles.container} />
+      <Body style={styles.container}>
+        <Image source={logo} style={styles.image} />
       </Body>
-      <Right style={{flex: 1}} />
+      <Right style={styles.container} />
     </Header>
   );
 };

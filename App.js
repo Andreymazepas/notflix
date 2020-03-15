@@ -6,7 +6,7 @@ import ContentRow from './Components/ContentRow';
 import ContentSwipe from './Components/ContentSwipe';
 import AppFooter from './Components/AppFooter';
 import DetailsModal from './Components/DetailsModal';
-import './styles.js';
+import styles from './styles.js';
 
 const App = () => {
   let [loading, setLoading] = useState(true);
@@ -37,12 +37,12 @@ const App = () => {
   };
 
   return (
-    <Container style={{backgroundColor: 'black'}}>
+    <Container style={styles.blackContainer}>
       <StatusBar hidden />
       <AppHeader />
 
       {loading ? (
-        <View style={{flex: 1, justifyContent: 'center'}}>
+        <View style={styles.loadingContainer}>
           <Spinner color="red" />
         </View>
       ) : (

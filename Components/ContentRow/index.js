@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {FlatList, View, Image, TouchableOpacity} from 'react-native';
 import {Spinner, H2} from 'native-base';
+import styles from './styles';
 
 const ContentRow = props => {
   let [content, setContent] = useState([]);
@@ -28,11 +29,8 @@ const ContentRow = props => {
   };
 
   return (
-    <View style={{Padding: 20, margin: 10}}>
-      <H2
-        style={{color: 'white', padding: 10, fontFamily: 'sans-serif-medium'}}>
-        {props.rowTitle}
-      </H2>
+    <View style={{margin: 10}}>
+      <H2 style={styles.rowName}>{props.rowTitle}</H2>
       {loading ? (
         <Spinner color="red" />
       ) : (
@@ -40,15 +38,18 @@ const ContentRow = props => {
           horizontal
           data={content}
           renderItem={({item}) => (
-            <View style={{margin: 5, width: 120}}>
+            <View style={styles.itemWrapper}>
               <TouchableOpacity
                 activeOpacity={0.5}
-                onPress={() => {props.setModalContent(item); props.setModalVisible(true);}}>
+                onPress={() => {
+                  props.setModalContent(item);
+                  props.setModalVisible(true);
+                }}>
                 <Image
                   source={{
                     uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}`,
                   }}
-                  style={{width: 120, height: 180}}
+                  style={styles.image}
                 />
               </TouchableOpacity>
             </View>
