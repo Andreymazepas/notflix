@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {FlatList, View, Image} from 'react-native';
-import {Spinner, Text,} from 'native-base';
+import {Spinner, Text} from 'native-base';
 
-const ContentRow = (fetchURL, rowTitle = '', fullSize = false) => {
+const ContentRow = props => {
   let [content, setContent] = useState([]);
   let [loading, setLoading] = useState(true);
 
@@ -10,22 +10,21 @@ const ContentRow = (fetchURL, rowTitle = '', fullSize = false) => {
     loadResults();
   }, []);
 
-  const loadResults = () => {
-    console.log(fetchURL);
-    return fetch({fetchURL})
+  const loadResults = async () => {
+    return fetch(props.fetchURL)
       .then(response => response.json())
       .then(responseJson => {
         setLoading(false);
         setContent(responseJson.results);
       })
       .catch(error => {
-        //console.error(error);
+        console.error(error);
       });
   };
 
   return (
     <View style={{marginVertical: 20}}>
-      <Text style={{color: 'white', padding: 20}}>{rowTitle.toString()}</Text>
+      <Text style={{color: 'white', padding: 20}}>{props.rowTitle}</Text>
       {loading ? (
         <Spinner color="red" />
       ) : (

@@ -1,16 +1,17 @@
 import React from 'react';
-import {Footer, FooterTab, Button, Icon, Text} from 'native-base';
+import {Footer, FooterTab, Button, Text} from 'native-base';
+import Icon from '../AppIcon';
 
 const AppFooter = () => {
   return (
     <Footer>
       <FooterTab style={{backgroundColor: 'black'}}>
         <Button>
-          <Icon name="apps" />
+          <Icon icon="faFilm" />
           <Text>Filmes</Text>
         </Button>
         <Button>
-          <Icon name="person" />
+          <Icon icon="faTV" />
           <Text>Series</Text>
         </Button>
       </FooterTab>

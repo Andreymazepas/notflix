@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, StatusBar} from 'react-native';
+import {StyleSheet, StatusBar, ScrollView} from 'react-native';
 import {Container} from 'native-base';
 import AppHeader from './Components/AppHeader';
 import ContentRow from './Components/ContentRow';
@@ -15,18 +15,21 @@ export default class App extends React.Component {
       <Container style={{backgroundColor: 'black'}}>
         <StatusBar hidden />
         <AppHeader />
+        <ScrollView>
+        <ContentRow
+          fetchURL="https://api.themoviedb.org/3/discover/movie?api_key=dc0c0ec1c215e3f8594b2471ce751d65"
+          rowTitle="testestestestes"
+          />
         <ContentRow
           fetchURL="https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=dc0c0ec1c215e3f8594b2471ce751d65"
-          rowTitle="testestestestes"
+          rowTitle="filmes top"
         />
         <ContentRow
-          fetchURL="https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=dc0c0ec1c215e3f8594b2471ce751d65"
-          rowTitle="testestestestes"
-        />
-        <ContentRow
-          fetchURL="https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=dc0c0ec1c215e3f8594b2471ce751d65"
-          rowTitle="testestestestes"
-        />
+          fetchURL="https://api.themoviedb.org/3/discover/movie?sort_by=popularity.asc&api_key=dc0c0ec1c215e3f8594b2471ce751d65"
+          rowTitle="filmes bosta"
+          />
+        </ScrollView>
+
        <AppFooter />
       </Container>
     );
